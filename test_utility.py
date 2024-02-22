@@ -36,6 +36,21 @@ def feature_target_sample(housing_data_sample):
     return (feature_df, target_series)
 
 def test_data_split(feature_target_sample):
-    return_tuple = data_split(*feature_target_sample)
-    # TODO test if the length of return_tuple is 4
-    raise NotImplemented
+    X_train, X_test, y_train, y_test = data_split(*feature_target_sample)
+
+    # Check if the length of return_tuple is 4
+    assert len((X_train, X_test, y_train, y_test)) == 4
+
+    # Check that the sizes of the splits are non-zero and reasonable given the data size
+    assert len(X_train) > 0
+    assert len(X_test) > 0
+    assert len(y_train) > 0
+    assert len(y_test) > 0
+
+    # Check that the sum of train and test samples equals the total samples
+    assert len(X_train) + len(X_test) == len(feature_target_sample[0])
+
+    # Check that the train and test sets have corresponding target values
+    assert len(X_train) == len(y_train)
+    assert len(X_test) == len(y_test)
+
