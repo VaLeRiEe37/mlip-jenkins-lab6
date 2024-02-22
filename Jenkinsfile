@@ -7,10 +7,6 @@ pipeline {
                 sh '''
                 echo 'Setting up Python virtual environment and installing dependencies.'
 
-                # Check if Python and Pip are available
-                which python || which python3
-                which pip || which pip3
-
                 # Create a virtual environment named 'mlip' and activate it
                 python -m venv mlip || python3 -m venv mlip
                 source mlip/bin/activate
