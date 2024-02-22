@@ -4,9 +4,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh '''#!/bin/bash
-                echo 'In C or Java, we can compile our program in this step'
-                echo 'In Python, we can build our package here or skip this step'
+                sh '''
+		python -m venv mlip
+		
+		source mlip/bin/activate
+
+		pip install --upgrade pip
+		
+		pip install pytest numpy pandas scikit-learn
+		
+		echo 'Environment setup is complete and dependencies are installed.'
                 '''
             }
         }
@@ -16,12 +23,9 @@ pipeline {
                 echo 'Test Step: We run testing tool like pytest here'
 
                 # TODO fill out the path to conda here
-                source /Users/apple/Desktop/2024Spring/17645-MLIP/labs/mlip-jenkins-lab6/venv/bin/activate
+                source mlip/bin/activate
 
 		pytest
-
-                # TODO Complete the command to run pytest
-                # sudo /PATH/TO/CONDA run -n <Envinronment Name> <Command you want to run>
 
                 '''
 
