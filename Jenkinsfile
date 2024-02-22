@@ -11,7 +11,7 @@ pipeline {
 
 		pip install --upgrade pip
 		
-		pip install pytest numpy pandas scikit-learn
+		pip install python pytest numpy pandas scikit-learn
 		
 		echo 'Environment setup is complete and dependencies are installed.'
                 '''
